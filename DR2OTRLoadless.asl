@@ -1,5 +1,5 @@
 //Load Remover by Souzooka
-//Autosplitter by streetbackguy
+//Autosplitter by streetbackguy and pokisal
 state("deadrising2otr")
 {
     bool IsLoading: 0x9E8EAC, 0x38, 0x1C4;
@@ -83,7 +83,7 @@ startup
                 settings.Add("@[00CC00FF,Expensive Champagne] acquired!", false, "Expensive Champagne", "OTItems");
                 settings.Add("@[00CC00FF,Men's Silk Thong] acquired!", false, "Men's Silk Thong", "OTItems");
                 settings.Add("@[00CC00FF,Zombrex Stash] acquired!", false, "Zombrex Stash", "OTItems");
-			settings.Add("065a_", false, "Delivered Items to TK", "overtime");
+			settings.Add("065a", false, "Delivered Items to TK", "overtime");
 			settings.Add("tkDead", false, "TK Defeated", "overtime");
 
         //Psycho Splits
