@@ -24,8 +24,8 @@ startup
 
         //Case 1 Splits
         settings.Add("case01", true, "Case 1", "splits");
+            settings.Add("020_", false, "Defeated Pharmacy Looters", "case01");
             settings.Add("024_", true, "Case 1-1", "case01");
-                settings.Add("020_", false, "Looters", "024_");
             settings.Add("025_", false, "Case 1-2", "case01");
             settings.Add("026_", false, "Case 1-3", "case01");
             settings.Add("027_", false, "Case 1-4", "case01");
@@ -208,8 +208,8 @@ split
     }
 
 	if (current.Cutscene != old.Cutscene && !vars.Splits.Contains(current.Cutscene))
-	{
-		vars.Splits.Add(current.Cutscene);
+    {
+        vars.Splits.Add(current.Cutscene);
 		return settings[current.Cutscene];
 	}
 
@@ -273,7 +273,8 @@ split
     }
 
 	// TK Split
-	if (current.TKHealth <= 0 && old.TKHealth > 0 && !vars.Splits.Contains("tkDead"))
+	if (current.RoomId == 2 && ((current.MilitiaMen <= 0 && old.MilitiaMen > 0) || (current.TKHealth <= 0 && old.TKHealth > 0))
+       && (current.Cutscene == "066a" || current.Cutscene == "067_") && !vars.Splits.Contains("tkDead"))
 	{
 		vars.Splits.Add("tkDead");
 		return settings["tkDead"];
