@@ -3,7 +3,7 @@
 state("deadrising2otr")
 {
     bool IsLoading: 0x9E8EAC, 0x38, 0x1C4;
-    bool InCutscene: 0x9E8EAC, 0x38, 0x8bb11f8;
+    bool InCutscene: 0x09C16B0, 0x2A8, 0x3D5C18;
     int RoomId: 0x9E8EAC, 0x38, 0x34;
     string4 Cutscene: 0x09C16B0, 0x2A8, 0xA08;
     int KillCount: 0x0A75A54, 0x92C;
@@ -25,7 +25,7 @@ startup
         //Case 1 Splits
         settings.Add("case01", true, "Case 1", "splits");
             settings.Add("020_", false, "Defeated Pharmacy Looters", "case01");
-            settings.Add("024_", true, "Case 1-1", "case01");
+            settings.Add("024_", false, "Case 1-1", "case01");
             settings.Add("025_", false, "Case 1-2", "case01");
             settings.Add("026_", false, "Case 1-3", "case01");
             settings.Add("027_", false, "Case 1-4", "case01");
@@ -42,8 +42,8 @@ startup
 
         //Case 4 Splits
         settings.Add("case04", true, "Case 4", "splits");
-            settings.Add("036_", true, "Case 4-1", "case04");
-            settings.Add("037_", true, "Case 4-2", "case04");
+            settings.Add("036_", false, "Case 4-1", "case04");
+            settings.Add("037_", false, "Case 4-2", "case04");
 
         //Case 5 Splits
         settings.Add("case05", true, "Case 5", "splits");
@@ -57,7 +57,7 @@ startup
 
         //Case 7 Splits
         settings.Add("case07", true, "Case 7", "splits");
-            settings.Add("050b", true, "Case 7-1", "case07");
+            settings.Add("050b", false, "Case 7-1", "case07");
             settings.Add("053_", false, "Case 7-2", "case07");
             settings.Add("054a", false, "Case 7-3", "case07");
             settings.Add("055a", false, "Case 7-4", "case07");
@@ -89,7 +89,7 @@ startup
         //Psycho Splits
         settings.Add("psycho", true, "Psychopaths", "splits");
             settings.Add("077_", false, "Antoine", "psycho");
-            settings.Add("083_", true, "Bibi", "psycho");
+            settings.Add("083_", false, "Bibi", "psycho");
                 settings.Add("083a", false, "Alternate Bibi", "083_");
             settings.Add("090_", false, "Carl", "psycho");
             settings.Add("079_", false,"Chuck", "psycho");
@@ -103,8 +103,8 @@ startup
                 settings.Add("earl", false, "Big Earl", "snipers");
                 settings.Add("deetz", false, "Deetz", "snipers");
             settings.Add("087_", false, "Slappy", "psycho");
-            settings.Add("095a", true, "Ted & Snowflake", "psycho");
-                settings.Add("096_", false, "Snowflake tamed", "095a");
+            settings.Add("095a", false, "Ted Defeated, "psycho");
+            settings.Add("096_", false, "Snowflake Tamed", "psycho");
 
         //Security Box Keys
         settings.Add("keys", true, "Security Deposit Keys", "splits");
@@ -273,7 +273,7 @@ split
     }
 
 	// TK Split
-	if (current.RoomId == 2 && ((current.MilitiaMen <= 0 && old.MilitiaMen > 0) || (current.TKHealth <= 0 && old.TKHealth > 0))
+	if (((current.MilitiaMen <= 0 && old.MilitiaMen > 0) || (current.TKHealth <= 0 && old.TKHealth > 0))
        && (current.Cutscene == "066a" || current.Cutscene == "067_") && !vars.Splits.Contains("tkDead"))
 	{
 		vars.Splits.Add("tkDead");
