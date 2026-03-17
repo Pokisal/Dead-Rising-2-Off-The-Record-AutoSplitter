@@ -2,16 +2,16 @@
 //Autosplitter by streetbackguy and pokisal
 state("deadrising2otr")
 {
-    bool IsLoading: 0x9E8EAC, 0x38, 0x1C4;
-    bool InCutscene: 0x09C16B0, 0x2A8, 0x3D5C18;
+    bool IsLoading: 0x9FEE18, 0x24, 0x8, 0x20;
+    bool InCutscene: 0x9C16B0, 0x2A8, 0x3D5C18;
     int RoomId: 0x9E8EAC, 0x38, 0x34;
-    string4 Cutscene: 0x09C16B0, 0x2A8, 0xA08;
-    int KillCount: 0x0A75A54, 0x92C;
-    int PlayerLevel: 0x09E0D6C, 0x58, 0x30;
-    int PlayerCash: 0x09DE9A8, 0x8, 0x70;
-    float TKHealth: 0x88DB20, 0x578, 0x54, 0x28, 0x9E0;
-    float MilitiaMen: 0x09FEE18, 0x28, 0x16C, 0x1AC;
-    string255 InfoBox: 0x0992A58, 0x9C, 0x7C;
+    string4 Cutscene: 0x9C16B0, 0x2A8, 0xA08;
+    int KillCount: 0xA75A54, 0x92C;
+    int PlayerLevel: 0x9E0D6C, 0x58, 0x30;
+    int PlayerCash: 0x9DE9A8, 0x8, 0x70;
+    float BossHealth: 0x9FEE18, 0x28, 0x16C, 0x1AC;
+    float BossHealth2: 0x88DB20, 0x578, 0x54, 0x28, 0x9E0;
+    string255 InfoBox: 0x992A58, 0x9C, 0x7C;
 }
 
 startup
@@ -103,7 +103,7 @@ startup
                 settings.Add("earl", false, "Big Earl", "snipers");
                 settings.Add("deetz", false, "Deetz", "snipers");
             settings.Add("087_", false, "Slappy", "psycho");
-            settings.Add("095a", false, "Ted Defeated, "psycho");
+            settings.Add("095a", false, "Ted Defeated", "psycho");
             settings.Add("096_", false, "Snowflake Tamed", "psycho");
 
         //Security Box Keys
@@ -266,14 +266,14 @@ split
     }
 
     //Overtime Items
-    if (current.InfoBox != old.InfoBox && !vars.Splits.Contains(current.InfoBoxs))
+    if (current.InfoBox != old.InfoBox && !vars.Splits.Contains(current.InfoBox))
     {
         vars.Splits.Add(current.InfoBox);
         return settings[current.InfoBox];
     }
 
 	// TK Split
-	if (((current.MilitiaMen <= 0 && old.MilitiaMen > 0) || (current.TKHealth <= 0 && old.TKHealth > 0))
+	if (((current.BossHealth <= 0 && old.BossHealth > 0) || (current.BossHealth2 <= 0 && old.BossHealth2 > 0))
        && (current.Cutscene == "066a" || current.Cutscene == "067_") && !vars.Splits.Contains("tkDead"))
 	{
 		vars.Splits.Add("tkDead");
