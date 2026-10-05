@@ -243,7 +243,7 @@ split
     }
 
     //Escorting Survivors Splits
-    if (current.InfoBox == "ESCORT COMPLETE" && !vars.SurvivorBool)
+    if ((current.InfoBox == "ESCORT COMPLETE" || current.InfoBox == "ESCORT BONUS!") && !vars.SurvivorBool)
     {
         vars.SurvivorBool = true;
         return settings["surv"];
