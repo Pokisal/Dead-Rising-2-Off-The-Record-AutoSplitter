@@ -177,6 +177,7 @@ startup
 
 init
 {
+    vars.SurvivorBool = false;
     vars.Splits = new HashSet<string>();
 }
 
@@ -192,8 +193,13 @@ reset
 
 update
 {
+    if (current.InfoBox == "JOIN BONUS!")
+    {
+        vars.SurvivorBool = false;
+    }
 	if (current.RoomId == 13 && old.RoomId != 13) 
     { 
+        vars.SurvivorBool = false;
         vars.Splits.Clear(); 
     }
 }
@@ -224,7 +230,7 @@ split
         vars.Splits.Add("derrick");
         return settings["derrick"];
     }
-    if (current.RoomId == 10  && current.InfoBox == "PSYCHOPATH DEFEATED BONUS!" && !vars.Splits.Contains("earl"))
+    if (current.Cutscene == "088_" && current.RoomId == 10  && current.InfoBox == "PSYCHOPATH DEFEATED BONUS!" && !vars.Splits.Contains("earl"))
     {
         vars.Splits.Add("earl");
         return settings["earl"];
@@ -236,8 +242,9 @@ split
     }
 
     //Escorting Survivors Splits
-    if (current.InfoBox == "ESCORT COMPLETE" && !vars.Splits.Contains("surv"))
+    if (current.InfoBox == "ESCORT COMPLETE" && !vars.SurvivorBool)
     {
+        vars.SurvivorBool = true;
         return settings["surv"];
     }
 
